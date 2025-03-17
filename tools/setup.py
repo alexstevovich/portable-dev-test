@@ -9,20 +9,11 @@ USER_NAME = "Alex Stevovich"
 USER_EMAIL = "alex.stevovich@gmail.com"
 
 # ---------- SCRIPT
-# version: 1.0.0
+# version: 1.1.0
 
 import os
 import subprocess
 import sys
-
-# ✅ Prevent accidental execution with a simple confirmation
-print("\n⚠️  WARNING: This script is for Admin Devs only.")
-print("⚠️  If you're a collaborator, you should set up Git manually.\n")
-
-confirm = input("Are you sure you want to continue? (y/N): ").strip().lower()
-if confirm != "y":
-    print("❌ Setup aborted.")
-    sys.exit(1)
 
 # Get script directory and change to it
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +47,7 @@ if not GIT_ROOT:
 # Change working directory to Git root
 os.chdir(GIT_ROOT)
 
-# 3️⃣ Set Git user details (unless `--no-user` is provided)
+# 3️⃣ Set Git user details
 print("🔹 Configuring Git user settings...")
 run(f'git config --local user.name "{USER_NAME}"')
 run(f'git config --local user.email "{USER_EMAIL}"')
@@ -68,12 +59,15 @@ for remote in existing_remotes:
     if remote:
         run(f"git remote remove {remote}")
 
-# 5️⃣ Add remotes
+# 5️⃣ Add `origin` and configure push to BOTH GitHub & GitLab
 print("🔹 Adding Git remotes...")
-run(f"git remote add github https://github.com/alexstevovich/{PROJECT_NAME}.git")
-run(f"git remote add gitlab https://gitlab.com/alexstevovich/{PROJECT_NAME}.git")
+run(f"git remote add origin https://github.com/alexstevovich/{PROJECT_NAME}.git")
 
-# 6️⃣ Verify workspace
+# 6️⃣ Configure `origin` to push to BOTH GitHub & GitLab
+run(f"git remote set-url --add --push origin https://github.com/alexstevovich/{PROJECT_NAME}.git")
+run(f"git remote set-url --add --push origin https://gitlab.com/alexstevovich/{PROJECT_NAME}.git")
+
+# 7️⃣ Verify workspace
 print("\n✅ Setup complete! Verifying workspace:")
 print(f"🔹 User: {run('git config --local user.name')}")
 print(f"🔹 Email: {run('git config --local user.email')}")
