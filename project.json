@@ -1,0 +1,19 @@
+{
+"meta_version": 1,
+"version":"0.0.0",
+"git":
+{
+    "admin":
+    {   
+        "user":"Alex Stevovich",
+        "email":"alex.stevovich@gmail.com",
+        "remote":
+        [
+            {
+                "url":"https://github.com/alexstevovich/portable-dev-test.git",
+                "proxy":["https://gitlab.com/alexstevovich/portable-dev-test.git"]
+            }
+        ]
+    }
+}
+}
