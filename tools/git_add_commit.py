@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 
-# ✅ Find the closest Git repository root
+# Find the closest Git repository root
 def find_git_root():
     """Find the closest .git root directory from the current script location."""
     try:
