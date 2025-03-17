@@ -1,16 +1,19 @@
+# ---------------------------------------------------
 # This script is to configure the admin workspace.sys
 # It should not be run by collaborators.
+# ---------------------------------------------------
 
-# Config
+# ---------- CONFIG
 PROJECT_NAME = "portable-dev-test"
 USER_NAME = "Alex Stevovich"
 USER_EMAIL = "alex.stevovich@gmail.com"
 
-# Business
+# ---------- SCRIPT
+# version: 1.0.0
+
 import os
 import subprocess
 import sys
-
 
 # ✅ Prevent accidental execution with a simple confirmation
 print("\n⚠️  WARNING: This script is for Admin Devs only.")
